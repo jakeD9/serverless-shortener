@@ -1,5 +1,6 @@
 import * as sst from '@serverless-stack/resources';
 import { CorsHttpMethod } from '@aws-cdk/aws-apigatewayv2';
+import { CfnOutput } from '@aws-cdk/core';
 
 export default class ShortStack extends sst.Stack {
     constructor(scope: sst.App, id: string, props?: sst.StackProps) {
@@ -45,5 +46,10 @@ export default class ShortStack extends sst.Stack {
         });
 
         api.attachPermissions([urlTable]);
+
+        // output endpoint
+        new CfnOutput(this, 'Endpoint', {
+            value: api.httpApi.apiEndpoint,
+        })
     }
 }

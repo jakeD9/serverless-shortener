@@ -14,7 +14,8 @@ export default class ShortStack extends sst.Stack {
             fields: {
                 short: sst.TableFieldType.STRING,
                 url: sst.TableFieldType.STRING,
-                hits: sst.TableFieldType.NUMBER
+                hits: sst.TableFieldType.NUMBER,
+                created: sst.TableFieldType.NUMBER
             },
             primaryIndex: { partitionKey: 'short' },
             dynamodbTable: {
@@ -22,7 +23,7 @@ export default class ShortStack extends sst.Stack {
             },
         });
 
-        // REST API
+        // REST API for lambda functions
         const api = new sst.Api(this, 'API', {
             defaultFunctionProps: {
                 timeout: 50,

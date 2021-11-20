@@ -1,5 +1,13 @@
 import type { DynamoDB } from "aws-sdk";
 
+/**
+ * Generic service for interacting with any DynamoDB table
+ * as long as permissions are set correctly.
+ * 
+ * Futureproofing in case other tables are added.
+ * Or to rip out later for a different project. Who cares.
+ */
+
 export const putItem = async <T = unknown>(
     client: DynamoDB.DocumentClient,
     table: string,

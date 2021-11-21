@@ -1,3 +1,11 @@
+# TODO Items:
+* set stage value dynamically across app
+* implement basic UI for root domain
+* browser extension!
+* add increment hits value on get
+* look into using dynamodb UPDATE instead of PUT, consider uniqueness of url key
+* add unit tests
+
 # Getting Started with Serverless Stack (SST)
 
 This project was bootstrapped with [Create Serverless Stack](https://docs.serverless-stack.com/packages/create-serverless-stack).

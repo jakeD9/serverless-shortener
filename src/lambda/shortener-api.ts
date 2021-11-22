@@ -15,7 +15,10 @@ const dynamo = new DynamoDB.DocumentClient({
   region: process.env.region,
   apiVersion: "latest",
 });
-const tableName = "UrlTable_dev"; // placeholder for when this gets moved to be set in .env file
+
+// TODO: use declaration merging to give types to env variables and make this its own logic 
+// needs to be type any or typescript barfs all over this otherwise
+const tableName: any = process.env.TABLE_NAME;
 
 // POST
 // create URL with optional user requested url id
@@ -24,6 +27,7 @@ export const createUrl = async (
   context: Context
 ) => {
   console.log("creating short url");
+  console.log(tableName);
 
   try {
     // validate JSON exists, and form data with yup

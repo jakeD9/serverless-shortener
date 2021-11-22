@@ -4,7 +4,10 @@ import ShortStack from "./ShortStack";
 export default function main(app: sst.App): void {
   // Set default runtime for all functions
   app.setDefaultFunctionProps({
-    runtime: "nodejs14.x"
+    runtime: "nodejs14.x",
+    environment: {
+      TABLE_NAME: process.env.TABLE_NAME ?? '',
+    },
   });
 
   new ShortStack(app, "short-stack");

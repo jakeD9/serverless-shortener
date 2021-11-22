@@ -1,5 +1,4 @@
 # TODO Items:
-* set stage value dynamically across app
 * implement basic UI for root domain
 * browser extension!
 * add increment hits value on get

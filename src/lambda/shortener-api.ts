@@ -27,7 +27,6 @@ export const createUrl = async (
   context: Context
 ) => {
   console.log("creating short url");
-  console.log(tableName);
 
   try {
     // validate JSON exists, and form data with yup
@@ -47,7 +46,7 @@ export const createUrl = async (
 
     // check for requested key. if none, give it a nanoid
     if (!requestedKey) {
-      requestedKey = nanoid(4);
+      requestedKey = nanoid(5);
     } else {
       // TODO: this block might be unnecessary. look into forcing uniqueness from dynamo.put() with conditionals?
       const tableKey: DynamoDB.DocumentClient.Key = { short: requestedKey };

@@ -3,6 +3,9 @@ import { CorsHttpMethod } from "@aws-cdk/aws-apigatewayv2";
 import { CfnOutput } from "@aws-cdk/core";
 
 export default class ShortStack extends sst.Stack {
+  // public reference to API
+  api: sst.Api;
+
   constructor(scope: sst.App, id: string, props?: sst.StackProps) {
     super(scope, id, props);
 
@@ -24,7 +27,7 @@ export default class ShortStack extends sst.Stack {
     });
 
     // REST API for lambda functions
-    const api = new sst.Api(this, "API", {
+    this.api = new sst.Api(this, "API", {
       defaultFunctionProps: {
         timeout: 50,
         environment: { tableName: urlTable.tableName },
@@ -40,17 +43,17 @@ export default class ShortStack extends sst.Stack {
       },
     });
 
-    api.addRoutes(this, {
+    this.api.addRoutes(this, {
       "POST    /url": "src/lambda/shortener-api.createUrl",
       "GET    /{urlId}": "src/lambda/shortener-api.redirectUrl",
       "GET    /url/{urlId}": "src/lambda/shortener-api.urlInfo",
     });
 
-    api.attachPermissions([urlTable]);
+    this.api.attachPermissions([urlTable]);
 
     // output endpoint
     new CfnOutput(this, "Endpoint", {
-      value: api.httpApi.apiEndpoint,
+      value: this.api.httpApi.apiEndpoint,
     });
   }
 }

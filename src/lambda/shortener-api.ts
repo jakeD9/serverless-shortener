@@ -16,9 +16,9 @@ const dynamo = new DynamoDB.DocumentClient({
   apiVersion: "latest",
 });
 
-// TODO: use declaration merging to give types to env variables and make this its own logic 
-// needs to be type any or typescript barfs all over this otherwise
-const tableName: any = process.env.TABLE_NAME;
+// TODO: use declaration merging to give types to env variables and make this its own logic? might be overkill
+// needs to be null coalesced/type any or typescript barfs all over this otherwise
+const tableName = process.env.TABLE_NAME ?? '';
 
 // POST
 // create URL with optional user requested url id

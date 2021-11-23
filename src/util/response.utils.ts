@@ -1,7 +1,6 @@
 import type { APIGatewayProxyResultV2 } from "aws-lambda";
-import { request } from "http";
 
-const HEADERS: Readonly<{ [key: string]: any }> = Object.freeze({
+const HEADERS: Readonly<{ [key: string]: string }> = Object.freeze({
   "Content-Type": "application/json",
 });
 

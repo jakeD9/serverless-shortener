@@ -6,7 +6,7 @@ export default class ClientStack extends sst.Stack {
     super(scope, id, props);
     const { api }: { api: sst.Api } = props;
 
-    const client = new sst.ReactStaticSite(this, "StaticSite", {
+    const client = new sst.NextjsSite(this, "StaticSite", {
       path: "client",
       environment: {
         CLIENT_API_URL: api.url,

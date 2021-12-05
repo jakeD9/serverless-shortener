@@ -35,7 +35,7 @@ const Baseline = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    background: ${({theme}) => theme.palette.papaya};
+    background: #FFEECF;
   }
 `;
 

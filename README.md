@@ -1,8 +1,13 @@
 # TODO Items:
 * browser extension!
+* get an actual domain name
 * add increment hits value on get
 * look into using dynamodb UPDATE instead of PUT, consider uniqueness of url key
 * add unit tests
+
+# About
+This is a serverless URL shortening tool built using Serverless Stack (SST). It contains a basic UI and (TBD) a browser extension.
+To run locally, you'll need to setup an AWS account. You can follow SST's [documentation steps](https://serverless-stack.com/chapters/create-an-aws-account.html) for quick and easy setup.
 
 # Getting Started with Serverless Stack (SST)
 

@@ -18,6 +18,15 @@ export const FormDisplay: React.FC = () => {
     setUrlData(null);
     setError("");
     setLoading(true);
+    // don't send empty forms, URL regex check
+    // eslint-disable-next-line no-useless-escape
+    const regex = new RegExp(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/)
+    if (!regex.test(form.url)) {
+      setError("Please make sure you're using a valid URL");
+      setLoading(false);
+      setUrlData(null);
+      return;
+    }
     // post request
     try {
       const result = await fetch("/api/url", {
@@ -39,11 +48,15 @@ export const FormDisplay: React.FC = () => {
         throw new Error(err);
       }
     } catch (err: unknown) {
-      // TODO: make this one request to the lambda url directly instead of going thru next to avoid this garbage
-      const parsed = JSON.parse(err.message);
-      setLoading(false);
-      setError(parsed.message);
       setUrlData(null);
+      setLoading(false);
+      // TODO: make this one request to the lambda url directly instead of going thru next to avoid this garbage
+      if (err instanceof Error) {
+        const parsed = JSON.parse(err.message);
+        setError(parsed.message);
+      } else {
+        setError("Something went wrong");
+      }
     }
   };
 

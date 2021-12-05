@@ -77,7 +77,6 @@ export const createUrl = async (
     // debugging
     console.debug(createdUrl);
 
-    // return buildSuccessResponse(shortUrl);
     return buildSuccessResponse(shortUrl, buildUrl(domainName, requestedKey));
   } catch (err) {
     console.error("api.createUrl() - failed for reason", err);

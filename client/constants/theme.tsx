@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider, createGlobalStyle, keyframes } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 
 /**
  * color theme generated from coolors.co
@@ -18,18 +18,6 @@ const theme = {
     color: "#383e42ff",
   },
 };
-
-const gradient = keyframes`
-  0% {
-    background-position: 0% 40%
-  }
-  50% {
-    background-position: 100% 61%
-  }
-  100% {
-    background-position: 0% 41%
-  }
-`
 
 const Baseline = createGlobalStyle`
   * {

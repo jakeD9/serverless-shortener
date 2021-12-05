@@ -1,5 +1,4 @@
 # TODO Items:
-* implement basic UI for root domain
 * browser extension!
 * add increment hits value on get
 * look into using dynamodb UPDATE instead of PUT, consider uniqueness of url key

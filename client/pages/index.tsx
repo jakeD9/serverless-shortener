@@ -1,49 +1,41 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import Head from "next/head";
 import { CustomThemeProvider } from "../constants/theme";
-import { Form } from '../common'
+import { FormDisplay } from "../common";
 
 export default function Home() {
   return (
     <CustomThemeProvider>
       <Head>
-        <title>URL Shortener</title>
+        <title>URL Shortener Demo Site</title>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Crimson+Pro"
         />
       </Head>
-      <Title>Serverless URL Shortener</Title>
+      <Title>Serverless URL Shortener Demo</Title>
+      <Subtitle>Disclaimer: I am not a web designer.</Subtitle>
+      <Subtitle>You should just use the browser extension instead!</Subtitle>
       <Box>
-        <Form />
+        <FormDisplay />
       </Box>
     </CustomThemeProvider>
   );
 }
 
 const Title = styled.h1`
-  color: white;
+  color: ${({ theme }) => theme.typography.color};
   font-size: 40px;
   text-align: center;
 `;
 
-const gradient = keyframes`
-  0% {
-    background-position: 0% 40%
-  }
-  50% {
-    background-position: 100% 61%
-  }
-  100% {
-    background-position: 0% 41%
-  }
+const Subtitle = styled.h4`
+  color: ${({ theme }) => theme.typography.color};
+  text-align: center;
 `;
 
 const Box = styled.div`
-  background: gray;
-  /* background: linear-gradient(40deg, #cacaaaff, #7f636eff, #eec584ff);
-  animation: ${gradient} 30s ease infinite;
-  background-size: 600% 600%; */
+  background: ${({ theme }) => theme.palette.tumbleweed};
   height: 600px;
   width: 600px;
   margin: auto;

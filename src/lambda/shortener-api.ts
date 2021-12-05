@@ -20,13 +20,16 @@ const dynamo = new DynamoDB.DocumentClient({
 // needs to be null coalesced/type any or typescript barfs all over this otherwise
 const tableName = process.env.TABLE_NAME ?? '';
 
-// POST
-// create URL with optional user requested url id
+// TODO: there's probably a better way to get this url using the CDK?
+const buildUrl = (domainName: string, short: string) => `https://${domainName}/${short}`
+
+// POST create URL with optional user requested url id
 export const createUrl = async (
   event: APIGatewayProxyEventV2,
   context: Context
 ) => {
   console.log("creating short url");
+  const domainName = event.requestContext.domainName;
 
   try {
     // validate JSON exists, and form data with yup
@@ -48,7 +51,7 @@ export const createUrl = async (
     if (!requestedKey) {
       requestedKey = nanoid(5);
     } else {
-      // TODO: this block might be unnecessary. look into forcing uniqueness from dynamo.put() with conditionals?
+      // TODO: this block might be unnecessary. look into forcing uniqueness from dynamo.put() with conditionals for uniqueness or something
       const tableKey: DynamoDB.DocumentClient.Key = { short: requestedKey };
       const short = await getItem(dynamo, tableName, tableKey);
 
@@ -74,7 +77,8 @@ export const createUrl = async (
     // debugging
     console.debug(createdUrl);
 
-    return buildSuccessResponse(shortUrl);
+    // return buildSuccessResponse(shortUrl);
+    return buildSuccessResponse(shortUrl, buildUrl(domainName, requestedKey));
   } catch (err) {
     console.error("api.createUrl() - failed for reason", err);
     return buildErrorResponse(err, context.awsRequestId);
@@ -114,6 +118,7 @@ export const urlInfo = async (
 ) => {
   const urlId = event?.pathParameters?.urlId;
   console.log(`urlInfo for given short url [${urlId}]`);
+  const domainName = event.requestContext.domainName;
 
   try {
     // get url-data from db
@@ -126,7 +131,7 @@ export const urlInfo = async (
         context.awsRequestId
       );
     }
-    return buildSuccessResponse(urlData);
+    return buildSuccessResponse(urlData, buildUrl(domainName, urlData.short));
   } catch (err) {
     console.error("api.urlInfo() - failed for reason", err);
     return buildErrorResponse(err, context.awsRequestId);

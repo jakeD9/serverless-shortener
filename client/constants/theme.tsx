@@ -1,21 +1,21 @@
 import React from "react";
-import styled, { ThemeProvider, createGlobalStyle, keyframes } from "styled-components";
+import { ThemeProvider, createGlobalStyle, keyframes } from "styled-components";
 
 /**
  * color theme generated from coolors.co
  */
 const theme = {
   palette: {
-    burgundy: "#4f3130ff",
-    catawba: "#753742ff",
-    mediumCarmine: "#aa5042ff",
-    goldCrayola: "#d8bd8aff",
-    yellowCrayola: "#d8d78fff",
+    papaya: "#FFEECF",
+    tumbleweed: "#C9A690",
+    satin: "#D36582",
+    rust: "#A44D1A",
   },
   typography: {
     fontFamily: "Crimson Pro",
     fontWeightBold: 700,
     fontSize: 14,
+    color: "#383e42ff",
   },
 };
 
@@ -47,7 +47,7 @@ const Baseline = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    background: #383e42ff;
+    background: ${({theme}) => theme.palette.papaya};
   }
 `;
 

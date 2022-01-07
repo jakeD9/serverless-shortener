@@ -6,7 +6,7 @@
 * add unit tests
 
 # About
-Live Demo [here](https://d1qtsqclhva8c3.cloudfront.net/)
+Live Demo [here](https://d2mkisxifke36n.cloudfront.net)
 
 This is a lightweight serverless URL shortening tool built using Serverless Stack (SST). It contains a basic UI and a browser extension (TBD).
 To run locally, you'll need to setup an AWS account. You can follow SST's [documentation steps](https://serverless-stack.com/chapters/create-an-aws-account.html) for quick and easy setup.
